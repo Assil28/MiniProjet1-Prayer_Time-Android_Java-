@@ -1,0 +1,124 @@
+
+
+
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+
+    android:background="@drawable/rounded_widget">
+
+    <TextView
+        android:id="@+id/tvWidget"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:gravity="center"
+        android:text="Location"
+        android:textColor="@color/black"
+        android:textSize="15sp"
+        android:textStyle="bold|italic"/>
+    <TextView
+        android:id="@+id/location"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+
+        android:gravity="center"
+        android:text="Djerb"
+        android:textColor="@color/black"
+        android:textSize="15sp"
+        android:textStyle="bold|italic"/>
+    <TextView
+        android:id="@+id/date"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+
+        android:gravity="center"
+        android:text="00-00-0000"
+        android:textColor="@color/black"
+        android:textSize="15sp"
+        android:textStyle="bold|italic"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:weightSum="2"
+        android:background="@drawable/rounded_button"
+        >
+
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical"
+
+            >
+            <TextView
+                android:id="@+id/tvWidge"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="20dp"
+                android:gravity="center"
+                android:text="Next Prayer"
+                android:textColor="@color/black"
+                android:textSize="15sp"
+                android:textStyle="bold|italic"/>
+
+            <TextView
+                android:id="@+id/prayer"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginBottom="10dp"
+                android:background="@drawable/rounded_boutton_white"
+                android:gravity="center"
+                android:text="Asr"
+                android:textColor="@color/black"
+                android:textSize="15sp"
+                android:textStyle="bold|italic"
+                />
+
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical"
+
+            >
+            <TextView
+                android:id="@+id/tvWid"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="20dp"
+                android:gravity="center"
+                android:text="Time"
+                android:textColor="@color/black"
+                android:textSize="15sp"
+                android:textStyle="bold|italic"/>
+
+            <TextView
+                android:id="@+id/time"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="20dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginBottom="10dp"
+                android:background="@drawable/rounded_boutton_white"
+                android:gravity="center"
+                android:text="16.30"
+                android:textColor="@color/black"
+                android:textSize="15sp"
+                android:textStyle="bold|italic"/>
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+</LinearLayout>
