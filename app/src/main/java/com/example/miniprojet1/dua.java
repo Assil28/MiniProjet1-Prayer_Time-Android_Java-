@@ -10,6 +10,9 @@ import android.view.ViewGroup;
 
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.miniprojet1.Adapter.DuaRVAdapter;
+import com.example.miniprojet1.Models.DuaModel;
+
 import java.util.ArrayList;
 import java.util.List;
 

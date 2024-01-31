@@ -44,7 +44,8 @@
         android:id="@+id/fragment"
         android:name="com.example.miniprojet1.prayer_time"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent"
+        tools:layout="@layout/fragment_prayer_time" />
 
 
 </LinearLayout>

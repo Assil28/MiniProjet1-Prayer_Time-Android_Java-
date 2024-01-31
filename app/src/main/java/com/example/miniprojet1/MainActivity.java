@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 
 import android.Manifest;
+import android.app.Activity;
 import android.app.Fragment;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
@@ -34,6 +35,19 @@ public class MainActivity extends AppCompatActivity {
     private String ville;
 
     @Override
+    protected void onResume() {
+        super.onResume();
+        if(Configuration.ORIENTATION_LANDSCAPE == getResources().getConfiguration().orientation)
+        {
+            Log.d("SCR_ROT", "ORIENTATION_LANDSCAPE");
+        }
+        else if (Configuration.ORIENTATION_PORTRAIT == getResources().getConfiguration().orientation)
+        {
+            Log.d("SCR_ROT", "ORIENTATION_PORTRAIT");
+        }
+    }
+
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
@@ -41,14 +55,7 @@ public class MainActivity extends AppCompatActivity {
         WindowManager windowManager = (WindowManager) getBaseContext().getSystemService(Context.WINDOW_SERVICE);
         Display display = windowManager.getDefaultDisplay();
 
-        int orientation;
 
-        if (display.getWidth() < display.getHeight()) {
-            orientation = Configuration.ORIENTATION_PORTRAIT;
-        } else {
-            orientation = Configuration.ORIENTATION_LANDSCAPE;
-        }
-        System.out.print("orientation : "+ orientation);
 
 
         // Get Location Info
@@ -124,4 +131,6 @@ public class MainActivity extends AppCompatActivity {
 
         ft.commit();
     }
+
+
 }

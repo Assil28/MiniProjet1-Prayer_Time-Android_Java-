@@ -4,10 +4,12 @@ import android.app.AlarmManager;
 import android.app.PendingIntent;
 import android.appwidget.AppWidgetManager;
 import android.appwidget.AppWidgetProvider;
+import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.RemoteViews;
 
 import java.text.SimpleDateFormat;
@@ -80,15 +82,32 @@ public class SimpleAppWidget extends AppWidgetProvider {
 
         views.setTextViewText(R.id.date, localDate);
 
+        //Pour le  Temps
+        SimpleDateFormat heuereFormat = new SimpleDateFormat("HH:mm", Locale.getDefault());
+        String localHeure = heuereFormat.format(calendar.getTime());
+        Log.d("WS","Time :"+localHeure);
+            views.setTextViewText(R.id.localTime,localHeure);
+
+
         // Construct an Intent object to open MainActivity
         Intent intent = new Intent(context, MainActivity.class);
         PendingIntent pendingIntent = PendingIntent.getActivity(context, 0, intent, PendingIntent.FLAG_CANCEL_CURRENT);
 
         // Définir l'intention en attente pour être déclenchée lorsque le widget est cliqué
-        views.setOnClickPendingIntent(R.id.tvWidget, pendingIntent);
+        views.setOnClickPendingIntent(R.id.mainWidgetLayout, pendingIntent);
 
         // Instruire le gestionnaire de widget de mettre à jour le widget
         appWidgetManager.updateAppWidget(appWidgetId, views);
     }
 
+    @Override
+    public void onReceive(Context context, Intent intent) {
+        super.onReceive(context, intent);
+        if (intent.getAction() != null && intent.getAction().equals(Intent.ACTION_TIME_TICK)) {
+            // Si l'action est ACTION_TIME_TICK, cela signifie que l'heure a changé, donc mettez à jour le widget
+            AppWidgetManager appWidgetManager = AppWidgetManager.getInstance(context);
+            int[] appWidgetIds = appWidgetManager.getAppWidgetIds(new ComponentName(context, SimpleAppWidget.class));
+            onUpdate(context, appWidgetManager, appWidgetIds);
+        }
+    }
 }

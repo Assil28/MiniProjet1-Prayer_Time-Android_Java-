@@ -1,51 +1,88 @@
-
-
-
-
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
-
+    android:id="@+id/mainWidgetLayout"
     android:background="@drawable/rounded_widget">
 
-    <TextView
-        android:id="@+id/tvWidget"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:gravity="center"
-        android:text="Location"
-        android:textColor="@color/black"
-        android:textSize="15sp"
-        android:textStyle="bold|italic"/>
-    <TextView
-        android:id="@+id/location"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
 
-        android:gravity="center"
-        android:text="Djerb"
-        android:textColor="@color/black"
-        android:textSize="15sp"
-        android:textStyle="bold|italic"/>
+    <LinearLayout
+        android:layout_marginTop="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:weightSum="2"
+        android:background="@drawable/rounded"
+        >
+
+        <TextView
+            android:layout_weight="1"
+            android:id="@+id/localTime"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:gravity="center"
+            android:text="21:30 "
+            android:textColor="@color/white"
+            android:textSize="40sp"
+            android:textStyle="bold|italic"/>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_weight="1"
+            >
+
+
+            <TextView
+
+                android:layout_marginTop="10dp"
+                android:id="@+id/location"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="Djerb"
+                android:textColor="@color/white"
+                android:textSize="15sp"
+                android:textStyle="bold|italic"/>
+
+            <ImageView
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="7dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_baseline_location_on_24"/>
+
+        </LinearLayout>
+
+
+
+
+    </LinearLayout>
+
+
     <TextView
+        android:textAlignment="center"
         android:id="@+id/date"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-
+        android:layout_marginTop="8dp"
         android:gravity="center"
         android:text="00-00-0000"
-        android:textColor="@color/black"
+        android:textColor="@color/white"
         android:textSize="15sp"
-        android:textStyle="bold|italic"/>
+        android:textStyle="bold|normal"/>
+
+
+
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:weightSum="2"
-        android:background="@drawable/rounded_button"
+        android:background="@drawable/rounded"
         >
 
 
@@ -60,10 +97,10 @@
                 android:id="@+id/tvWidge"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="20dp"
+                android:layout_margin="10dp"
                 android:gravity="center"
                 android:text="Next Prayer"
-                android:textColor="@color/black"
+                android:textColor="@color/white"
                 android:textSize="15sp"
                 android:textStyle="bold|italic"/>
 
@@ -95,10 +132,10 @@
                 android:id="@+id/tvWid"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="20dp"
+                android:layout_margin="10dp"
                 android:gravity="center"
                 android:text="Time"
-                android:textColor="@color/black"
+                android:textColor="@color/white"
                 android:textSize="15sp"
                 android:textStyle="bold|italic"/>
 

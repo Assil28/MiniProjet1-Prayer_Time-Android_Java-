@@ -1,4 +1,4 @@
-package com.example.miniprojet1;
+package com.example.miniprojet1.Adapter;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -7,6 +7,10 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.example.miniprojet1.Models.DuaModel;
+import com.example.miniprojet1.R;
+
 import java.util.List;
 
 

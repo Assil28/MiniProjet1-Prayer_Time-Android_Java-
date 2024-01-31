@@ -1,4 +1,4 @@
-package com.example.miniprojet1;
+package com.example.miniprojet1.Models;
 
 public class DuaModel {
     private String duatext;

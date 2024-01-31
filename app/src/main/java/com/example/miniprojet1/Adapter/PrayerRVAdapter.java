@@ -1,6 +1,7 @@
-package com.example.miniprojet1;
+package com.example.miniprojet1.Adapter;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -8,6 +9,9 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.example.miniprojet1.Models.PrayerModel;
+import com.example.miniprojet1.R;
 
 import java.util.List;
 
@@ -26,7 +30,7 @@ public class PrayerRVAdapter extends RecyclerView.Adapter<PrayerRVAdapter.ViewHo
     @Override
     public PrayerRVAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view= LayoutInflater.from(context).inflate(R.layout.prayer_item,parent,false);
-        return new ViewHolder(view);
+        return new PrayerRVAdapter.ViewHolder(view);
     }
 
     @Override
@@ -44,6 +48,8 @@ public class PrayerRVAdapter extends RecyclerView.Adapter<PrayerRVAdapter.ViewHo
             holder.prayer.setText(model.getPrayer());
             holder.time.setText(model.getTime());
         }
+
+        Log.d("ADAPTER","SETTING DATA FOR " + model);
 
 
 

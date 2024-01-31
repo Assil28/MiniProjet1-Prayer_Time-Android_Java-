@@ -1,17 +1,12 @@
-package com.example.miniprojet1;
+package com.example.miniprojet1.Services;
 
-import android.location.LocationManager;
-import android.os.Bundle;
-
-import android.app.Fragment;
-
+import android.app.Service;
+import android.content.Intent;
+import android.os.IBinder;
 import android.util.Log;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -26,110 +21,56 @@ import com.example.miniprojet1.Models.ApiResponseModel;
 import com.example.miniprojet1.Models.PrayerModel;
 import com.google.gson.Gson;
 
-
 import org.json.JSONObject;
 
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Collections;
+
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 
-
-public class prayer_time extends Fragment {
-
+public class PrayerService extends Service {
     private List<PrayerModel> prayerModels;
     private PrayerRVAdapter prayerRVAdapter;
+    private RecyclerView prayerRv;
 
-    private LocationManager locationManager;
-    private int PERMISSION_CODE = 1;
-    private String cityName;
-
-
-    private TextView location;
-    RecyclerView prayerRv;
-
-    private static final String ARG_PARAM1 = "param1";
-
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    TextView date;
-
-    public prayer_time() {
-        // Required empty public constructor
-    }
-
-
-    // TODO: Rename and change types and number of parameters
-    public static prayer_time newInstance(String cityName) {
-        System.out.println(cityName);
-        prayer_time fragment = new prayer_time();
-        Bundle args = new Bundle();
-        args.putString("CITY_NAME", cityName);
-        fragment.setArguments(args);
-        return fragment;
+    @Nullable
+    @Override
+    public IBinder onBind(Intent intent) {
+        return null;
     }
 
     @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            cityName = getArguments().getString("CITY_NAME");
+    public int onStartCommand(Intent intent, int flags, int startId) {
+        String cityName = intent.getStringExtra("cityName");
+        if (cityName != null) {
+            getprayerInfo(cityName);
         }
-
-
-        // Initialize prayerModels
-        prayerModels = new ArrayList<>();
-
-
-    }
-
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_prayer_time, container, false);
-        prayerRv = view.findViewById(R.id.prayerRV);
-        date = view.findViewById(R.id.date);
-
-        location=view.findViewById(R.id.location);
-        location.setText(cityName);
-
-/*
-// Start the service to get prayer info
-        Intent serviceIntent = new Intent(getActivity(), PrayerService.class);
-        serviceIntent.putExtra("cityName", cityName);
-        getActivity().startService(serviceIntent);
- */
-
-        getprayerInfo(cityName);
-
-
-        return view;
+        return START_NOT_STICKY;
     }
 
 
-    // Methode recupperer prayer d'une ville a travers son nom
+
     public void getprayerInfo(String cityName) {
         String url = "https://api.aladhan.com/v1/calendarByCity?city=" + cityName + "&country=Tunisia&method=2&month=01&year=2024";
         Log.d("WS_COMM", "URL IS : " + url);
         // nous avons travailler avec le volley
-        RequestQueue requestQueue = Volley.newRequestQueue(getActivity().getApplicationContext());
+        RequestQueue requestQueue = Volley.newRequestQueue(getApplicationContext().getApplicationContext());
 
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject response) {
                 Log.d("WS_COMM", "GOT response : " + response.toString());
                 //Vider La liste a chaque fois on change la ville
-                prayerModels.clear();
+                //prayerModels.clear();
                 try {
                     // Obtenez la date locale du système
                     Calendar calendar = Calendar.getInstance();
                     SimpleDateFormat dateFormat = new SimpleDateFormat("DD-MM-YYYY", Locale.getDefault());
                     String localDate = dateFormat.format(calendar.getTime());
 
-                    Toast.makeText(getActivity().getApplicationContext(),
+                    Toast.makeText(getApplicationContext().getApplicationContext(),
                             localDate,
                             Toast.LENGTH_LONG).show();
 
@@ -150,9 +91,9 @@ public class prayer_time extends Fragment {
                     //pour que la liste soit triéé
                     //Collections.sort(prayerModels);
 
-                    prayerRVAdapter = new PrayerRVAdapter(prayerModels, getActivity().getApplicationContext()); // You need to create this adapter
+                    prayerRVAdapter = new PrayerRVAdapter(prayerModels,getApplicationContext()); // You need to create this adapter
                     Log.d("WS_COMM", "DONE RVAdapter");
-                    prayerRv.setLayoutManager(new LinearLayoutManager(getActivity().getApplicationContext()));
+                    prayerRv.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
                     prayerRv.setAdapter(prayerRVAdapter);
 
                     Log.d("WS_COMM", "DONE SET ADAPTER");
@@ -165,7 +106,7 @@ public class prayer_time extends Fragment {
             @Override
             public void onErrorResponse(VolleyError error) {
                 Log.d("WS_COMM", "Got error :(");
-                Toast.makeText(getActivity().getApplicationContext(), error.toString(), Toast.LENGTH_LONG).show();
+                Toast.makeText(getApplicationContext(), error.toString(), Toast.LENGTH_LONG).show();
             }
         }
         );
