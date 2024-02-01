@@ -1,28 +1,22 @@
 package com.example.miniprojet1;
-
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.app.ActivityCompat;
 
-import android.Manifest;
-import android.app.Activity;
 import android.app.Fragment;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
-import android.content.pm.PackageManager;
 import android.content.res.Configuration;
 import android.location.Address;
 import android.location.Geocoder;
-import android.location.Location;
 import android.location.LocationManager;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Display;
 import android.view.View;
 import android.view.WindowManager;
-import android.widget.Toast;
+import android.widget.Button;
 
 import java.util.List;
 import java.util.Locale;
@@ -33,6 +27,7 @@ public class MainActivity extends AppCompatActivity {
     private LocationManager locationManager;
     private  int PERMISSION_CODE=1;
     private String ville;
+    Button prayerTimeB,duaB,qiblaB;
 
     @Override
     protected void onResume() {
@@ -51,10 +46,12 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        System.out.print("hhhhhhhhhhhhhhhhhhhhhhhhhhhhh5");
         WindowManager windowManager = (WindowManager) getBaseContext().getSystemService(Context.WINDOW_SERVICE);
         Display display = windowManager.getDefaultDisplay();
 
+        prayerTimeB=findViewById(R.id.button);
+        duaB=findViewById(R.id.button2);
+        qiblaB=findViewById(R.id.button3);
 
 
 
@@ -118,6 +115,12 @@ public class MainActivity extends AppCompatActivity {
         ft.replace(R.id.fragment,fragment);
 
         ft.commit();
+        prayerTimeB.setBackgroundResource(R.drawable.rounded_actif_button);
+        duaB.setBackgroundResource(R.drawable.rounded_button);
+        qiblaB.setBackgroundResource(R.drawable.rounded_button);
+
+
+
 
     }
 
@@ -130,6 +133,25 @@ public class MainActivity extends AppCompatActivity {
         ft.replace(R.id.fragment,fragment);
 
         ft.commit();
+        duaB.setBackgroundResource(R.drawable.rounded_actif_button);
+        prayerTimeB.setBackgroundResource(R.drawable.rounded_button);
+        qiblaB.setBackgroundResource(R.drawable.rounded_button);
+
+    }
+
+    public void btndQuibla(View view) {
+
+        fragment = new Qibla();
+        FragmentManager fm = getFragmentManager();
+        FragmentTransaction ft=fm.beginTransaction();
+
+        ft.replace(R.id.fragment,fragment);
+
+        ft.commit();
+        qiblaB.setBackgroundResource(R.drawable.rounded_actif_button);
+        duaB.setBackgroundResource(R.drawable.rounded_button);
+        prayerTimeB.setBackgroundResource(R.drawable.rounded_button);
+
     }
 
 

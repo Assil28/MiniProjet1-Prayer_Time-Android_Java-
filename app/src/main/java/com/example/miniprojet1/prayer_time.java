@@ -64,11 +64,11 @@ public class prayer_time extends Fragment {
 
     // TODO: Rename and change types and number of parameters
     public static prayer_time newInstance(String cityName) {
-        System.out.println(cityName);
         prayer_time fragment = new prayer_time();
         Bundle args = new Bundle();
         args.putString("CITY_NAME", cityName);
         fragment.setArguments(args);
+
         return fragment;
     }
 
@@ -94,7 +94,15 @@ public class prayer_time extends Fragment {
         date = view.findViewById(R.id.date);
 
         location=view.findViewById(R.id.location);
-        location.setText(cityName);
+        // Récupérer la valeur de la ville depuis les arguments
+        if (getArguments() != null) {
+            cityName = getArguments().getString("CITY_NAME");
+            location.setText(cityName); // Mettre à jour le TextView avec la valeur de la ville
+        }
+        else
+        {
+            location.setText("cityName not found");
+        }
 
 /*
 // Start the service to get prayer info
@@ -112,7 +120,17 @@ public class prayer_time extends Fragment {
 
     // Methode recupperer prayer d'une ville a travers son nom
     public void getprayerInfo(String cityName) {
-        String url = "https://api.aladhan.com/v1/calendarByCity?city=" + cityName + "&country=Tunisia&method=2&month=01&year=2024";
+        // Obtenez la date locale du système
+        Calendar calendar = Calendar.getInstance();
+        SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-YYYY", Locale.getDefault());
+        String localDate = dateFormat.format(calendar.getTime());
+        Log.d("WS_COMM", "LOCAL DATE : "+localDate);
+
+        Toast.makeText(getActivity().getApplicationContext(),
+                localDate,
+                Toast.LENGTH_LONG).show();
+
+        String url = "https://api.aladhan.com/v1/calendarByCity?city=" + cityName + "&country=Tunisia&method=2&month="+localDate.substring(3,5)+"&year="+localDate.substring(6,10);
         Log.d("WS_COMM", "URL IS : " + url);
         // nous avons travailler avec le volley
         RequestQueue requestQueue = Volley.newRequestQueue(getActivity().getApplicationContext());
@@ -124,14 +142,7 @@ public class prayer_time extends Fragment {
                 //Vider La liste a chaque fois on change la ville
                 prayerModels.clear();
                 try {
-                    // Obtenez la date locale du système
-                    Calendar calendar = Calendar.getInstance();
-                    SimpleDateFormat dateFormat = new SimpleDateFormat("DD-MM-YYYY", Locale.getDefault());
-                    String localDate = dateFormat.format(calendar.getTime());
 
-                    Toast.makeText(getActivity().getApplicationContext(),
-                            localDate,
-                            Toast.LENGTH_LONG).show();
 
                     ApiResponseModel root = new Gson().fromJson(response.toString(), ApiResponseModel.class);
                     Log.d("WS_COMM", "DATA COUNT : "+root.data.size());
