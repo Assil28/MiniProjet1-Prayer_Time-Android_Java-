@@ -32,7 +32,7 @@ import org.json.JSONObject;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Collections;
+
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
@@ -102,6 +102,7 @@ public class prayer_time extends Fragment {
         else
         {
             location.setText("cityName not found");
+            location.setTextSize(20);
         }
 
 /*

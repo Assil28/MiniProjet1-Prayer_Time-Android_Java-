@@ -6,30 +6,37 @@
     tools:context=".Qibla"
     android:background="@color/jaune">
 
-    <LinearLayout
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
-        <TextView
-            android:layout_marginTop="50dp"
+        android:layout_height="match_parent">
+
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Qibla Direction"
-            android:textColor="@color/black"
-            android:textStyle="bold"
-            android:textAlignment="center"
-            android:textSize="30sp"/>
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+            <TextView
+                android:layout_marginTop="50dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Qibla Direction"
+                android:textColor="@color/black"
+                android:textStyle="bold"
+                android:textAlignment="center"
+                android:textSize="30sp"/>
 
-        <ImageView
-            android:layout_marginTop="30dp"
-            android:id="@+id/qiblaimage"
-            android:layout_width="450dp"
-            android:layout_height="450dp"
-            android:src="@drawable/qibla"
-           android:layout_gravity="center"/>
+            <ImageView
+                android:layout_marginTop="30dp"
+                android:id="@+id/qiblaimage"
+                android:layout_width="450dp"
+                android:layout_height="450dp"
+                android:src="@drawable/qibla"
+                android:layout_gravity="center"/>
 
 
-    </LinearLayout>
+        </LinearLayout>
+
+    </ScrollView>
+
 
 
 

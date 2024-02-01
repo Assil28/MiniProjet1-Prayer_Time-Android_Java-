@@ -30,7 +30,7 @@
                 android:layout_marginRight="90dp"
                 android:maxWidth="6mm"
                 android:maxHeight="20sp"
-                android:src="@drawable/prayer"/>
+                android:src="@drawable/prayer_time"/>
 
             <TextView
                 android:id="@+id/date"
