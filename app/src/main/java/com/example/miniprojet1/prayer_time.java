@@ -1,5 +1,7 @@
 package com.example.miniprojet1;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.location.LocationManager;
 import android.os.Bundle;
 
@@ -33,6 +35,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
@@ -126,10 +129,12 @@ public class prayer_time extends Fragment {
         SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-YYYY", Locale.getDefault());
         String localDate = dateFormat.format(calendar.getTime());
         Log.d("WS_COMM", "LOCAL DATE : "+localDate);
+        date.setText(localDate);
 
-        Toast.makeText(getActivity().getApplicationContext(),
-                localDate,
-                Toast.LENGTH_LONG).show();
+
+        SharedPreferences preferences = getActivity().getSharedPreferences("WidgetPrefs", Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = preferences.edit();
+
 
         String url = "https://api.aladhan.com/v1/calendarByCity?city=" + cityName + "&country=Tunisia&method=2&month="+localDate.substring(3,5)+"&year="+localDate.substring(6,10);
         Log.d("WS_COMM", "URL IS : " + url);
@@ -151,9 +156,27 @@ public class prayer_time extends Fragment {
                         if (d.date.gregorian.date.equals(localDate)) {
                             Gson JParser = new Gson();
                             Map<String, String> map = JParser.fromJson(JParser.toJson(d.timings), Map.class);
-                            for (Map.Entry<String, String> entry : map.entrySet()) {
+                            LinkedHashMap<String, String> orderedTimings = new LinkedHashMap<>();
+
+                            // Organiser les prières dans l'ordre spécifié
+                            orderedTimings.put("Imsak", map.get("Imsak"));
+                            orderedTimings.put("Fajr", map.get("Fajr"));
+                            orderedTimings.put("Sunrise", map.get("Sunrise"));
+                            orderedTimings.put("Dhuhr", map.get("Dhuhr"));
+                            orderedTimings.put("Asr", map.get("Asr"));
+                            orderedTimings.put("Sunset", map.get("Sunset"));
+                            orderedTimings.put("Maghrib", map.get("Maghrib"));
+                            orderedTimings.put("Isha", map.get("Isha"));
+
+                            for (Map.Entry<String, String> entry : orderedTimings.entrySet()) {
                                 prayerModels.add(new PrayerModel(entry.getKey(), entry.getValue()));
                             }
+
+                            // Convertir la liste en JSON
+                            String prayersJson = new Gson().toJson(prayerModels);
+                            // Mettre les prières dans SharedPreferences
+                            editor.putString("prayers", prayersJson);
+                            editor.apply();
                             break;
                         }
                     }
