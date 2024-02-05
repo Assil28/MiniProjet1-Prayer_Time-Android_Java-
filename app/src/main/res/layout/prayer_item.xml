@@ -24,7 +24,7 @@
             android:layout_width="0dp"
             android:layout_weight="1"
             android:layout_height="wrap_content"
-            android:textSize="30sp"
+            android:textSize="25sp"
             android:layout_marginLeft="0dp"
             android:text="Prayer"
             android:textColor="@color/black"
@@ -45,7 +45,7 @@
             android:text="13"
             android:textAlignment="center"
             android:textColor="@color/black"
-            android:textSize="30sp" />
+            android:textSize="25sp" />
 
     </LinearLayout>
 
