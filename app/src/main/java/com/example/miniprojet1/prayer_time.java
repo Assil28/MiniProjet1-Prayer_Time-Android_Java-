@@ -206,4 +206,6 @@ public class prayer_time extends Fragment {
         );
         requestQueue.add(jsonObjectRequest);
     }
+
+
 }

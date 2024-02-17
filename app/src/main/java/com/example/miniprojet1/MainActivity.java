@@ -39,7 +39,7 @@ public class MainActivity extends AppCompatActivity {
     private LocationManager locationManager;
     private  int PERMISSION_CODE=1;
     private String ville;
-    Button prayerTimeB,duaB,qiblaB,mousqueB;
+    Button prayerTimeB,duaB,qiblaB,mousqueB,tasbihB;
 
     private GoogleMap mMap;
 
@@ -54,7 +54,7 @@ public class MainActivity extends AppCompatActivity {
         duaB=findViewById(R.id.button2);
         qiblaB=findViewById(R.id.button3);
         mousqueB=findViewById(R.id.button4);
-
+        tasbihB=findViewById(R.id.button5);
         this.btnd(null);
 
 
@@ -164,6 +164,7 @@ public class MainActivity extends AppCompatActivity {
         prayerTimeB.setBackgroundResource(R.drawable.rounded_button);
         qiblaB.setBackgroundResource(R.drawable.rounded_button);
         mousqueB.setBackgroundResource(R.drawable.rounded_button);
+        tasbihB.setBackgroundResource(R.drawable.rounded_button);
 
     }
 
@@ -180,6 +181,7 @@ public class MainActivity extends AppCompatActivity {
         duaB.setBackgroundResource(R.drawable.rounded_button);
         prayerTimeB.setBackgroundResource(R.drawable.rounded_button);
         mousqueB.setBackgroundResource(R.drawable.rounded_button);
+        tasbihB.setBackgroundResource(R.drawable.rounded_button);
 
 
     }
@@ -200,5 +202,25 @@ public class MainActivity extends AppCompatActivity {
         qiblaB.setBackgroundResource(R.drawable.rounded_button);
         duaB.setBackgroundResource(R.drawable.rounded_button);
         prayerTimeB.setBackgroundResource(R.drawable.rounded_button);
+        tasbihB.setBackgroundResource(R.drawable.rounded_button);
+
+    }
+
+    public void btndTasbih(View view) {
+
+        fragment = new tasbih_fragment();
+        FragmentManager fm = getFragmentManager();
+        FragmentTransaction ft=fm.beginTransaction();
+
+        ft.replace(R.id.fragment,fragment);
+
+        ft.commit();
+
+
+        tasbihB.setBackgroundResource(R.drawable.rounded_actif_button);
+        qiblaB.setBackgroundResource(R.drawable.rounded_button);
+        duaB.setBackgroundResource(R.drawable.rounded_button);
+        prayerTimeB.setBackgroundResource(R.drawable.rounded_button);
+        mousqueB.setBackgroundResource(R.drawable.rounded_button);
     }
 }
