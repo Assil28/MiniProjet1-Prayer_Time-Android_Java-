@@ -12,6 +12,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.example.miniprojet1.Models.FetchData;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
@@ -21,6 +22,7 @@ import com.google.android.gms.maps.model.MarkerOptions;
 
 public class MapsFragment extends Fragment {
 
+    private GoogleMap mMap;
     private OnMapReadyCallback callback = new OnMapReadyCallback() {
 
         /**
@@ -63,8 +65,26 @@ public class MapsFragment extends Fragment {
                 double longitude = Double.parseDouble(longitudeString);
 
                 LatLng location = new LatLng(latitude, longitude);
-                googleMap.addMarker(new MarkerOptions().position(location).title("Marker"));
+                googleMap.addMarker(new MarkerOptions().position(location).title("MyLocation"));
                 googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(location, 15)); // Zoom level can be adjusted
+
+
+            StringBuilder stringBuilder=new StringBuilder
+                    ("https://maps.googleapis.com/maps/api/place/nearbysearch/json?");
+            stringBuilder.append("location="+latitude+","+longitude);
+            stringBuilder.append("&radius=1000");
+                stringBuilder.append("&type=mosque");
+                stringBuilder.append("&sensor=true");
+                stringBuilder.append("&key=AIzaSyA9CamnVenbDKPKO050TiGh3Q8yt3h1YfQ");
+
+                String url=stringBuilder.toString();
+                Object dataFetch[]=new Object[2];
+                dataFetch[0]=mMap;
+                dataFetch[1]=url;
+
+                FetchData fetchData=new FetchData();
+                fetchData.execute(dataFetch);
+
             }
             else {
                 LatLng sydney = new LatLng(-34, 151);

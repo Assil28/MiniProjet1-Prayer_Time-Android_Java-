@@ -3,6 +3,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 
 import android.app.Fragment;
+
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.app.PendingIntent;
@@ -144,6 +145,7 @@ public class MainActivity extends AppCompatActivity {
         duaB.setBackgroundResource(R.drawable.rounded_button);
         qiblaB.setBackgroundResource(R.drawable.rounded_button);
 
+        mousqueB.setBackgroundResource(R.drawable.rounded_button);
 
 
 
@@ -161,6 +163,7 @@ public class MainActivity extends AppCompatActivity {
         duaB.setBackgroundResource(R.drawable.rounded_actif_button);
         prayerTimeB.setBackgroundResource(R.drawable.rounded_button);
         qiblaB.setBackgroundResource(R.drawable.rounded_button);
+        mousqueB.setBackgroundResource(R.drawable.rounded_button);
 
     }
 
@@ -176,6 +179,8 @@ public class MainActivity extends AppCompatActivity {
         qiblaB.setBackgroundResource(R.drawable.rounded_actif_button);
         duaB.setBackgroundResource(R.drawable.rounded_button);
         prayerTimeB.setBackgroundResource(R.drawable.rounded_button);
+        mousqueB.setBackgroundResource(R.drawable.rounded_button);
+
 
     }
 
@@ -183,9 +188,10 @@ public class MainActivity extends AppCompatActivity {
     public void btndMousque(View view) {
 
 
-        fragment = new MapFragment();
-        FragmentManager fm = getFragmentManager();
-        FragmentTransaction ft=fm.beginTransaction();
+
+        androidx.fragment.app.Fragment fragment = new MapsFragment();
+        androidx.fragment.app.FragmentManager fm = getSupportFragmentManager(); // Use getSupportFragmentManager() instead of getFragmentManager()
+        androidx.fragment.app. FragmentTransaction ft = fm.beginTransaction();
 
         ft.replace(R.id.fragment,fragment);
 
