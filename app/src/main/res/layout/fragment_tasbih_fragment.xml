@@ -29,7 +29,7 @@
             <LinearLayout
                 android:id="@+id/linearLayout2"
                 android:layout_width="100dp"
-                android:layout_height="wrap_content"
+                android:layout_height="100dp"
                 android:layout_below="@+id/textView"
                 android:layout_alignParentEnd="true"
                 android:layout_alignParentBottom="true"
@@ -43,7 +43,7 @@
                 <TextView
                     android:id="@+id/counter"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
 
                     android:text="0"
                     android:textAlignment="center"

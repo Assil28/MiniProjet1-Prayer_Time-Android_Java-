@@ -191,9 +191,9 @@ public class MainActivity extends AppCompatActivity {
 
 
 
-        androidx.fragment.app.Fragment fragment = new MapsFragment();
-        androidx.fragment.app.FragmentManager fm = getSupportFragmentManager(); // Use getSupportFragmentManager() instead of getFragmentManager()
-        androidx.fragment.app. FragmentTransaction ft = fm.beginTransaction();
+        fragment = new GoToMaps();
+        FragmentManager fm = getFragmentManager();
+        FragmentTransaction ft=fm.beginTransaction();
 
         ft.replace(R.id.fragment,fragment);
 
