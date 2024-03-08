@@ -44,7 +44,7 @@ public class MainActivity extends AppCompatActivity {
     private LocationManager locationManager;
     private  int PERMISSION_CODE=1;
     private String ville;
-    Button prayerTimeB,duaB,qiblaB,mousqueB,tasbihB;
+    Button prayerTimeB,duaB,qiblaB,mousqueB,tasbihB,abulationB;
 
     private GoogleMap mMap;
 
@@ -67,6 +67,7 @@ public class MainActivity extends AppCompatActivity {
         qiblaB=findViewById(R.id.button3);
         mousqueB=findViewById(R.id.button4);
         tasbihB=findViewById(R.id.button5);
+        abulationB=findViewById(R.id.button6);
         this.btnd(null);
 
     }
@@ -202,6 +203,8 @@ public class MainActivity extends AppCompatActivity {
         qiblaB.setBackgroundResource(R.drawable.rounded_button);
 
         mousqueB.setBackgroundResource(R.drawable.rounded_button);
+        abulationB.setBackgroundResource(R.drawable.rounded_button);
+
 
 
 
@@ -221,6 +224,8 @@ public class MainActivity extends AppCompatActivity {
         qiblaB.setBackgroundResource(R.drawable.rounded_button);
         mousqueB.setBackgroundResource(R.drawable.rounded_button);
         tasbihB.setBackgroundResource(R.drawable.rounded_button);
+        abulationB.setBackgroundResource(R.drawable.rounded_button);
+
 
     }
 
@@ -238,6 +243,8 @@ public class MainActivity extends AppCompatActivity {
         prayerTimeB.setBackgroundResource(R.drawable.rounded_button);
         mousqueB.setBackgroundResource(R.drawable.rounded_button);
         tasbihB.setBackgroundResource(R.drawable.rounded_button);
+        abulationB.setBackgroundResource(R.drawable.rounded_button);
+
 
 
     }
@@ -259,6 +266,8 @@ public class MainActivity extends AppCompatActivity {
             duaB.setBackgroundResource(R.drawable.rounded_button);
             prayerTimeB.setBackgroundResource(R.drawable.rounded_button);
             tasbihB.setBackgroundResource(R.drawable.rounded_button);
+            abulationB.setBackgroundResource(R.drawable.rounded_button);
+
         }
         else {
             androidx.fragment.app.Fragment fragment = new MapsFragment();
@@ -273,6 +282,8 @@ public class MainActivity extends AppCompatActivity {
             duaB.setBackgroundResource(R.drawable.rounded_button);
             prayerTimeB.setBackgroundResource(R.drawable.rounded_button);
             tasbihB.setBackgroundResource(R.drawable.rounded_button);
+            abulationB.setBackgroundResource(R.drawable.rounded_button);
+
         }
 
 
@@ -298,6 +309,26 @@ public class MainActivity extends AppCompatActivity {
 
 
         tasbihB.setBackgroundResource(R.drawable.rounded_actif_button);
+        qiblaB.setBackgroundResource(R.drawable.rounded_button);
+        duaB.setBackgroundResource(R.drawable.rounded_button);
+        prayerTimeB.setBackgroundResource(R.drawable.rounded_button);
+        mousqueB.setBackgroundResource(R.drawable.rounded_button);
+        abulationB.setBackgroundResource(R.drawable.rounded_button);
+
+    }
+
+    public void btnabulation(View view) {
+        fragment = new blution_for_prayer();
+        FragmentManager fm = getFragmentManager();
+        FragmentTransaction ft=fm.beginTransaction();
+
+        ft.replace(R.id.fragment,fragment);
+
+        ft.commit();
+
+        abulationB.setBackgroundResource(R.drawable.rounded_actif_button);
+
+        tasbihB.setBackgroundResource(R.drawable.rounded_button);
         qiblaB.setBackgroundResource(R.drawable.rounded_button);
         duaB.setBackgroundResource(R.drawable.rounded_button);
         prayerTimeB.setBackgroundResource(R.drawable.rounded_button);
