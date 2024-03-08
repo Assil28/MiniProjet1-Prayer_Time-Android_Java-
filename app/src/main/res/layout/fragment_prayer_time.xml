@@ -18,7 +18,7 @@
                 android:layout_marginTop="0dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Prayer Time"
+                android:text="@string/prayer_time"
                 android:textColor="@color/black"
                 android:textStyle="bold"
                 android:textAlignment="center"
@@ -54,7 +54,7 @@
 
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Location :"
+                    android:text="@string/localisation"
                     android:textColor="@color/black"
                     android:textStyle="bold"
                     android:textAlignment="center"

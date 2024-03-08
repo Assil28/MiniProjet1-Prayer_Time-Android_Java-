@@ -2,6 +2,7 @@ package com.example.miniprojet1;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 
+import android.app.Activity;
 import android.app.Fragment;
 
 import android.app.FragmentManager;
@@ -12,6 +13,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.content.res.Configuration;
+import android.content.res.Resources;
 import android.location.Address;
 import android.location.Geocoder;
 import android.location.Location;
@@ -21,6 +23,8 @@ import android.util.Log;
 import android.view.Display;
 import android.view.View;
 import android.view.WindowManager;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 
 import java.util.List;
@@ -28,6 +32,7 @@ import java.util.Locale;
 import java.util.Objects;
 
 import android.Manifest;
+import android.widget.Spinner;
 
 import com.example.miniprojet1.Models.FetchData;
 import com.google.android.gms.maps.GoogleMap;
@@ -43,12 +48,18 @@ public class MainActivity extends AppCompatActivity {
 
     private GoogleMap mMap;
 
+    Spinner spinner;
+
+    public static  final String[] languages={"Select Language","English","Arabic"};
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         WindowManager windowManager = (WindowManager) getBaseContext().getSystemService(Context.WINDOW_SERVICE);
         Display display = windowManager.getDefaultDisplay();
+
+        spinner=findViewById(R.id.spinner);
 
         prayerTimeB=findViewById(R.id.button);
         duaB=findViewById(R.id.button2);
@@ -57,9 +68,47 @@ public class MainActivity extends AppCompatActivity {
         tasbihB=findViewById(R.id.button5);
         this.btnd(null);
 
+        ArrayAdapter<String> adapter=new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item,languages);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinner.setAdapter(adapter);
+        spinner.setSelection(0);
+
+
+        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                String selectedLang = parent.getItemAtPosition(position).toString();
+
+                if (selectedLang.equals("English")) {
+                    setLocal(MainActivity.this, "eng");
+                    finish();
+                    startActivity(getIntent());
+
+                } else if (selectedLang.equals("Arabic")) {
+                    setLocal(MainActivity.this, "ar");
+                    finish();
+                    startActivity(getIntent());
+
+                }
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+                // Do nothing
+            }
+        });
 
 
 
+    }
+
+    public void setLocal(Activity activity,String langCode){
+        Locale locale=new Locale(langCode);
+        locale.setDefault(locale);
+        Resources resources=activity.getResources();
+        Configuration config = resources.getConfiguration();
+        config.setLocale(locale);
+        resources.updateConfiguration(config,resources.getDisplayMetrics());
     }
     @Override
     protected void onResume() {
@@ -190,20 +239,44 @@ public class MainActivity extends AppCompatActivity {
     public void btndMousque(View view) {
 
 
+        if (isPackageInstalled("com.google.android.apps.maps", getPackageManager())) {
+            fragment = new GoToMaps();
+            FragmentManager fm = getFragmentManager();
+            FragmentTransaction ft = fm.beginTransaction();
 
-        fragment = new GoToMaps();
-        FragmentManager fm = getFragmentManager();
-        FragmentTransaction ft=fm.beginTransaction();
+            ft.replace(R.id.fragment, fragment);
 
-        ft.replace(R.id.fragment,fragment);
+            ft.commit();
+            mousqueB.setBackgroundResource(R.drawable.rounded_actif_button);
+            qiblaB.setBackgroundResource(R.drawable.rounded_button);
+            duaB.setBackgroundResource(R.drawable.rounded_button);
+            prayerTimeB.setBackgroundResource(R.drawable.rounded_button);
+            tasbihB.setBackgroundResource(R.drawable.rounded_button);
+        }
+        else {
+            androidx.fragment.app.Fragment fragment = new MapsFragment();
+            androidx.fragment.app.FragmentManager fm = getSupportFragmentManager(); // Use getSupportFragmentManager() instead of getFragmentManager()
+            androidx.fragment.app. FragmentTransaction ft = fm.beginTransaction();
 
-        ft.commit();
-        mousqueB.setBackgroundResource(R.drawable.rounded_actif_button);
-        qiblaB.setBackgroundResource(R.drawable.rounded_button);
-        duaB.setBackgroundResource(R.drawable.rounded_button);
-        prayerTimeB.setBackgroundResource(R.drawable.rounded_button);
-        tasbihB.setBackgroundResource(R.drawable.rounded_button);
+            ft.replace(R.id.fragment,fragment);
 
+            ft.commit();
+            mousqueB.setBackgroundResource(R.drawable.rounded_actif_button);
+            qiblaB.setBackgroundResource(R.drawable.rounded_button);
+            duaB.setBackgroundResource(R.drawable.rounded_button);
+            prayerTimeB.setBackgroundResource(R.drawable.rounded_button);
+            tasbihB.setBackgroundResource(R.drawable.rounded_button);
+        }
+
+
+    }
+    private boolean isPackageInstalled(String packageName, PackageManager packageManager) {
+        try {
+            packageManager.getPackageInfo(packageName, PackageManager.GET_ACTIVITIES);
+            return true;
+        } catch (PackageManager.NameNotFoundException e) {
+            return false;
+        }
     }
 
     public void btndTasbih(View view) {

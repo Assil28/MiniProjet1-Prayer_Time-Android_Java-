@@ -1,5 +1,7 @@
 package com.example.miniprojet1;
 
+import android.app.FragmentManager;
+import android.app.FragmentTransaction;
 import android.content.ActivityNotFoundException;
 import android.content.Context;
 import android.content.Intent;
@@ -17,7 +19,7 @@ import android.view.ViewGroup;
 
 public class GoToMaps extends Fragment {
 
-
+    Fragment fragment;
     public GoToMaps() {
         // Required empty public constructor
     }
@@ -60,6 +62,7 @@ getDirection();
 
             intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             startActivity(intent);
+
         }
 
     }

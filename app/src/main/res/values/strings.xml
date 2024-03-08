@@ -1,8 +1,30 @@
 <resources>
-    <string name="app_name">MiniProjet1</string>
+    <string name="app_name">Prayer App</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="title_activity_splash_screen">SplashScreen</string>
+
+
+
+    <string name="prayer">PRAYER</string>
+    <string name="dua">DUA</string>
+    <string name="qibla">QIBLA</string>
+    <string name="mousque">Mousqué</string>
+    <string name="taseeh">TASBEEH</string>
+    <string name="prayer_time">PRAYER TIME</string>
+    <string name="localisation">Location :</string>
+    <string name="qibla_direction">QIBLA DIRECTION</string>
+    <string name="tasbeeh_counter">TASBEEH COUNTER</string>
+    <string name="reset">RESET</string>
     <!-- Strings used for fragments for navigation -->
+
+    <string name="duaModel">God, choose for me what is best in all matters of my life, then please me with your choice</string>
+    <string name="duaModel1">I seek refuge in the perfect words of Allah from the evil of what He has created.</string>
+    <string name="duaModel2">In the name of God, whose name does not harm anything on the earth or in heaven, and He is the All-Knowing.</string>
+    <string name="duaModel3">Oh God, I ask you with your mercy, which envelopes everything to forgive me.</string>
+    <string name="duaModel4">Allah is my suffice, and the best deputy.</string>
+    <string name="duaModel5">Oh Allah, Grant Health to my body, Oh Allah Grant health to my hearing, Oh Allah, Grant health to my sight.</string>
+    <string name="duaModel6">O God save me from impotence, laziness, immorality, and infidelity, and grant me Paradise without punishment.</string>
+    <string name="dua_first">O God, I ask you the best of what your Prophet Muhammad (peace and blessings of Allaah be upon him) asked you, and we seek refuge in you from the evil of what your Prophet Muhammad (peace and blessings of Allaah be upon him).</string>
 
 </resources>
