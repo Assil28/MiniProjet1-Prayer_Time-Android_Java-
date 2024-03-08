@@ -5,13 +5,13 @@
     <string name="title_activity_splash_screen">SplashScreen</string>
 
 
-
     <string name="prayer">PRAYER</string>
     <string name="dua">DUA</string>
     <string name="qibla">QIBLA</string>
     <string name="mousque">Mousqué</string>
     <string name="taseeh">TASBEEH</string>
     <string name="prayer_time">PRAYER TIME</string>
+    <string name="ablution">ABLUTION</string>
     <string name="localisation">Location :</string>
     <string name="qibla_direction">QIBLA DIRECTION</string>
     <string name="tasbeeh_counter">TASBEEH COUNTER</string>
@@ -26,5 +26,19 @@
     <string name="duaModel5">Oh Allah, Grant Health to my body, Oh Allah Grant health to my hearing, Oh Allah, Grant health to my sight.</string>
     <string name="duaModel6">O God save me from impotence, laziness, immorality, and infidelity, and grant me Paradise without punishment.</string>
     <string name="dua_first">O God, I ask you the best of what your Prophet Muhammad (peace and blessings of Allaah be upon him) asked you, and we seek refuge in you from the evil of what your Prophet Muhammad (peace and blessings of Allaah be upon him).</string>
+    <string name="etapeAblution">Steps of ablution</string>
+
+    <string name="etapeAblution2">1. Intention Invocation\n
+   Wudu is not valid except with the intention of lifting the state of impurity that prevented worship.\n\n
+2. Naming  Allah, which is to say: In the name of Allah, the Most Gracious, the Most Merciful.\n\n
+3. Washing the hands three times\n\n
+4. Rinsing the mouth three times\n\n
+5. Inhalation and exhalation three times\n\n
+6. Washing the face three times\n\n
+7. Washing the hands up to the elbows three times\n\n
+8. Wiping the head and ears\n\n
+9. Washing the feet three times\n\n
+</string>
+
 
 </resources>
