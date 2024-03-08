@@ -50,7 +50,8 @@ public class MainActivity extends AppCompatActivity {
 
     Spinner spinner;
 
-    public static  final String[] languages={"Select Language","English","Arabic"};
+    public static  final String[] languagesEn={"Select Language","English","Arabic"};
+    public static  final String[] languagesAr={"اختار اللغة","إنجليزية","عربية"};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -68,39 +69,9 @@ public class MainActivity extends AppCompatActivity {
         tasbihB=findViewById(R.id.button5);
         this.btnd(null);
 
-        ArrayAdapter<String> adapter=new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item,languages);
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spinner.setAdapter(adapter);
-        spinner.setSelection(0);
-
-
-        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                String selectedLang = parent.getItemAtPosition(position).toString();
-
-                if (selectedLang.equals("English")) {
-                    setLocal(MainActivity.this, "eng");
-                    finish();
-                    startActivity(getIntent());
-
-                } else if (selectedLang.equals("Arabic")) {
-                    setLocal(MainActivity.this, "ar");
-                    finish();
-                    startActivity(getIntent());
-
-                }
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-                // Do nothing
-            }
-        });
-
-
-
     }
+
+
 
     public void setLocal(Activity activity,String langCode){
         Locale locale=new Locale(langCode);
@@ -144,6 +115,42 @@ public class MainActivity extends AppCompatActivity {
         editor.putString("longitude", String.valueOf((Double) location.getLongitude()));
         editor.putString("latitude", String.valueOf((Double) location.getLatitude()));
         editor.apply();
+
+        // Adapter pour le Spinner
+        ArrayAdapter<String> adapter;
+        if (getResources().getConfiguration().locale.getLanguage().equals("fr")) {
+            adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, languagesEn);
+        } else {
+            adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, languagesAr);
+        }
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinner.setAdapter(adapter);
+        spinner.setSelection(0);
+
+
+        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                String selectedLang = parent.getItemAtPosition(position).toString();
+
+                if (selectedLang.equals("English") || selectedLang.equals("إنجليزية")) {
+                    setLocal(MainActivity.this, "fr");
+                    finish();
+                    startActivity(getIntent());
+
+                } else if (selectedLang.equals("Arabic") || selectedLang.equals("عربية")) {
+                    setLocal(MainActivity.this, "ar");
+                    finish();
+                    startActivity(getIntent());
+
+                }
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+                // Do nothing
+            }
+        });
     }
 
 
@@ -201,7 +208,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void btnd(View view) {
-      // poour naviger vers une fragment
+        // poour naviger vers une fragment
         fragment=new dua();
         FragmentManager fm = getFragmentManager();
         FragmentTransaction ft=fm.beginTransaction();
