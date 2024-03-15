@@ -39,6 +39,9 @@
 8. Wiping the head and ears\n\n
 9. Washing the feet three times\n\n
 </string>
+    <string name="pray">Prayer\n</string>
+    <string name="nombrederakaa">Nombre de rakaa</string>
+    <string name="voix">Voix\n</string>
 
 
 </resources>

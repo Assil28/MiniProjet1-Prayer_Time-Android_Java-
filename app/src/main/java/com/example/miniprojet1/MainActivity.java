@@ -252,7 +252,6 @@ public class MainActivity extends AppCompatActivity {
 
     public void btndMousque(View view) {
 
-
         if (isPackageInstalled("com.google.android.apps.maps", getPackageManager())) {
             fragment = new GoToMaps();
             FragmentManager fm = getFragmentManager();

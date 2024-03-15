@@ -3,17 +3,22 @@ package com.example.miniprojet1;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.location.LocationManager;
+import android.media.MediaPlayer;
+import android.os.Build;
 import android.os.Bundle;
 
 import android.app.Fragment;
 
+import android.os.Handler;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -43,6 +48,15 @@ import java.util.Map;
 
 public class prayer_time extends Fragment {
 
+    private ImageView imageView;
+    private int[] imageArray = {R.drawable.photo1, R.drawable.photo2, R.drawable.photo3, R.drawable.photo4, R.drawable.photo5, R.drawable.photo6, R.drawable.photo7};
+    private int[] audioArray = {R.raw.audio1, R.raw.audio2, R.raw.audio3, R.raw.audio4,R.raw.audio5,R.raw.audio6,R.raw.audio7};
+    private int currentIndex = 0;
+    private Handler handler;
+    private MediaPlayer mediaPlayer;
+
+
+    CardView cardView;
     private List<PrayerModel> prayerModels;
     private PrayerRVAdapter prayerRVAdapter;
 
@@ -87,6 +101,7 @@ public class prayer_time extends Fragment {
         prayerModels = new ArrayList<>();
 
 
+
     }
 
     @Override
@@ -108,6 +123,8 @@ public class prayer_time extends Fragment {
             location.setTextSize(20);
         }
 
+
+
 /*
 // Start the service to get prayer info
         Intent serviceIntent = new Intent(getActivity(), PrayerService.class);
@@ -116,6 +133,15 @@ public class prayer_time extends Fragment {
  */
 
         getprayerInfo(cityName);
+
+        imageView = view.findViewById(R.id.imageView);
+        handler = new Handler();
+
+        mediaPlayer = new MediaPlayer();
+
+
+        // Démarrez la tâche de mise à jour de l'image
+        startImageSlideshow();
 
 
         return view;
@@ -185,10 +211,11 @@ public class prayer_time extends Fragment {
                     //pour que la liste soit triéé
                     //Collections.sort(prayerModels);
 
-                    prayerRVAdapter = new PrayerRVAdapter(prayerModels, getActivity().getApplicationContext()); // You need to create this adapter
+                    prayerRVAdapter = new PrayerRVAdapter(prayerModels, getActivity().getApplicationContext(),getFragmentManager()); // You need to create this adapter
                     Log.d("WS_COMM", "DONE RVAdapter");
                     prayerRv.setLayoutManager(new LinearLayoutManager(getActivity().getApplicationContext()));
                     prayerRv.setAdapter(prayerRVAdapter);
+
 
                     Log.d("WS_COMM", "DONE SET ADAPTER");
                 } catch (Exception e) {
@@ -206,6 +233,41 @@ public class prayer_time extends Fragment {
         );
         requestQueue.add(jsonObjectRequest);
     }
+
+    // for animation of prayer photos
+    private void startImageSlideshow() {
+        // Utilisez un Runnable pour changer l'image et démarrer la lecture audio toutes les deux secondes
+        handler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                // Changez l'image affichée
+                imageView.setImageResource(imageArray[currentIndex]);
+
+                // Passez à l'image suivante
+                currentIndex = (currentIndex + 1) % imageArray.length;
+
+                // Lancez la lecture audio correspondant à l'image actuelle
+               // playAudio(audioArray[currentIndex]);
+
+                // Appelez la méthode à nouveau après deux secondes
+                handler.postDelayed(this, 3000);
+            }
+        }, 3000); // Démarrez après deux secondes
+    }
+
+    /*private void playAudio(int audioResourceId) {
+        try {
+            // Réinitialisez le lecteur multimédia et chargez le nouveau fichier audio
+            mediaPlayer.reset();
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+                mediaPlayer.setDataSource(getResources().openRawResourceFd(audioResourceId));
+            }
+            mediaPlayer.prepare();
+            mediaPlayer.start();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }*/
 
 
 }

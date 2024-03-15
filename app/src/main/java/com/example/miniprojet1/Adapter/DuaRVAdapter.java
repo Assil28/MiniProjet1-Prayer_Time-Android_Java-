@@ -16,6 +16,7 @@ import java.util.List;
 
 public class DuaRVAdapter extends RecyclerView.Adapter<DuaRVAdapter.ViewHolder> {
 
+
     private Context context;
     private List<DuaModel> duaModels;
 

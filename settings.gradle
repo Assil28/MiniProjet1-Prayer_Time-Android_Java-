@@ -12,6 +12,7 @@ dependencyResolutionManagement {
     repositories {
         google()
         mavenCentral()
+        jcenter() // i add it for card animation
     }
 
 }

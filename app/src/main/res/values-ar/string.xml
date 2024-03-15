@@ -41,9 +41,9 @@
 8. مسح الرأس والأذنين\n\n
 9. غسل القدمين ثلاثا\n\n
 </string>
-
-
-
+    <string name="pray">صلاة</string>
+    <string name="nombrederakaa">عدد الركعات</string>
+    <string name="voix">كيفية القراءة</string>
 
 
 </resources>

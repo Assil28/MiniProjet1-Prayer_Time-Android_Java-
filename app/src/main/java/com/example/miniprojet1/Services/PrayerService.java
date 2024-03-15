@@ -91,7 +91,7 @@ public class PrayerService extends Service {
                     //pour que la liste soit triéé
                     //Collections.sort(prayerModels);
 
-                    prayerRVAdapter = new PrayerRVAdapter(prayerModels,getApplicationContext()); // You need to create this adapter
+                    prayerRVAdapter = new PrayerRVAdapter(prayerModels,getApplicationContext(),null); // You need to create this adapter
                     Log.d("WS_COMM", "DONE RVAdapter");
                     prayerRv.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
                     prayerRv.setAdapter(prayerRVAdapter);
